@@ -2,7 +2,7 @@ import ContainerPeliculas from "./components/ContainerPeliculas/ContainerPelicul
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <ContainerPeliculas />
     </div>
   );

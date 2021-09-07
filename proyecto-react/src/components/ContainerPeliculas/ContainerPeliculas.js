@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Movie from "../Movie/Movie";
 import "./styles.css";
 
 export default class ContainerPeliculas extends Component {
@@ -11,16 +12,13 @@ export default class ContainerPeliculas extends Component {
 
   componentDidMount() {
     fetch(
-      "https://api.themoviedb.org/3/movie/550?api_key=40ec58a7d82c64e794c15c9579790084"
+      "https://api.themoviedb.org/3/movie/popular?api_key=40ec58a7d82c64e794c15c9579790084"
     )
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        //console.log(data.results);
-        //let personajes = data.results;
-
-        //A la información que obtengo la guardo en el estado dentro de una propiedad
+        console.log(data);
         this.setState({
           movies: data.results,
         });
@@ -32,6 +30,19 @@ export default class ContainerPeliculas extends Component {
     console.log("Me estoy renderizando!");
     console.log(this.state.movies);
 
-    return <div></div>;
+    return (
+      <div className="container">
+        {this.state.movies.map((movie, index) => {
+          return (
+            <Movie
+              key={index}
+              poster_path={movie.poster_path}
+              title={movie.title}
+              overview={movie.overview}
+            />
+          );
+        })}
+      </div>
+    );
   }
 }
