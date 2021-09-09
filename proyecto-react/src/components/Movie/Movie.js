@@ -10,7 +10,7 @@ export default class Movie extends Component {
   render() {
     return (
       <div className="movie">
-        <img src={this.props.poster_path} alt="" />
+        <img src={ 'https://image.tmdb.org/t/p/w342' + this.props.poster_path} alt="" />
         <h4> {this.props.title} </h4>
         <h4> Descripción: {this.props.overview}</h4>
         {/* <button onClick={() => this.props.removerPersonaje(this.props.name)}>
