@@ -51,6 +51,17 @@ export default class ContainerPeliculas extends Component {
       });
   }
 
+  removeCard(title) {
+    const filteredMovies = this.state.movies.filter(
+      (element) => element.title !== title
+    );
+
+    this.setState({
+      movies: filteredMovies,
+      filteredMovies: filteredMovies,
+    });
+  }
+
   filtrarPorNombre(nombreAFiltrar) {
     console.log(nombreAFiltrar);
     const filteredArray = this.state.movies.filter((movie) =>
@@ -78,17 +89,22 @@ export default class ContainerPeliculas extends Component {
             this.filtrarPorNombre(nombreAFiltrar)
           }
         />
-        <button onClick={() => this.addCards()}>Página siguiente</button>
-        {this.state.filteredMovies.map((movie, index) => {
-          return (
-            <Movie
-              key={index}
-              poster={movie.poster_path}
-              title={movie.title}
-              overview={movie.overview}
-            />
-          );
-        })}
+        <button onClick={() => this.addCards()}>Cargar más películas</button>
+        {this.state.filteredMovies.length === 0 ? (
+          <h4> Cargando ... </h4>
+        ) : (
+          this.state.filteredMovies.map((movie, index) => {
+            return (
+              <Movie
+                key={index}
+                poster={movie.poster_path}
+                title={movie.title}
+                overview={movie.overview}
+                removerPersonaje={(title) => this.removeCard(title)}
+              />
+            );
+          })
+        )}
       </div>
     );
   }

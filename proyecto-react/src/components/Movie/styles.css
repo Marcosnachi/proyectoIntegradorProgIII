@@ -40,6 +40,8 @@
 }
 .more {
   color: blue;
+  width: fit-content;
+  margin: auto;
 }
 .more:hover {
   text-decoration: underline;

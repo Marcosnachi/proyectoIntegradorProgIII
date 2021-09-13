@@ -27,7 +27,6 @@ export default class FilterField extends Component {
       <form onSubmit={(event) => this.prevenirSubmit(event)}>
         <label>Search: </label>
         <input onChange={(event) => this.capturaInput(event)} type="text" />
-        <input type="submit" />
       </form>
     );
   }

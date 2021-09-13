@@ -6,21 +6,20 @@ export default class Movie extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      clase: "hide",
       mensaje: "ver más",
-      descripcion: this.props.overview,
-      descripcionCortada: this.props.overview.slice(0, 130) + "...",
     };
   }
 
   handleShow() {
-    if (this.state.descripcion.length <= 130) {
+    if (this.state.clase === "hide") {
       this.setState({
-        descripcionCortada: this.state.descripcion,
+        clase: "show",
         mensaje: "ver menos",
       });
     } else {
       this.setState({
-        descripcionCortada: this.state.descripcion,
+        clase: "hide",
         mensaje: "ver más",
       });
     }
@@ -37,11 +36,11 @@ export default class Movie extends Component {
         <p className="more" onClick={() => this.handleShow()}>
           {this.state.mensaje}
         </p>
-        <h4 className={"show"}> {this.props.descripcionCortada}</h4>
-        {/* <button onClick={() => this.props.removerPersonaje(this.props.name)}>
+        <p className={this.state.clase}>{this.props.overview}</p>
+        <button onClick={() => this.props.removerPersonaje(this.props.title)}>
           {" "}
           Eliminar personaje
-        </button> */}
+        </button>
       </div>
     );
   }
