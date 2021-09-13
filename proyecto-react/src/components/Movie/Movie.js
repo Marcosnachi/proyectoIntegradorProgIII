@@ -5,33 +5,39 @@ import "./styles.css";
 export default class Movie extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      clase: 'hide',
-      mensaje: 'ver más'
-    }
+    this.state = {
+      mensaje: "ver más",
+      descripcion: this.props.overview,
+      descripcionCortada: this.props.overview.slice(0, 130) + "...",
+    };
   }
 
-  handleShow(){
-    if (this.state.clase === 'hide'){
-        this.setState({
-            clase: 'show',
-            mensaje: "ver menos"
-        })
-        } else {
-        this.setState({
-            clase: 'hide',
-            mensaje: "ver mas"
-        })   
+  handleShow() {
+    if (this.state.descripcion.length <= 130) {
+      this.setState({
+        descripcionCortada: this.state.descripcion,
+        mensaje: "ver menos",
+      });
+    } else {
+      this.setState({
+        descripcionCortada: this.state.descripcion,
+        mensaje: "ver más",
+      });
     }
-}
+  }
 
   render() {
     return (
       <div className="movie">
-        <img src={ 'https://image.tmdb.org/t/p/w342' + this.props.poster_path} alt="" />
-        <h4 className= "titulo"> {this.props.title} </h4>
-        <p className= "more" onClick = {() => this.handleShow()}>{this.state.mensaje}</p>
-        <h4 className= {this.state.clase}> {this.props.overview}</h4>
+        <img
+          src={"https://image.tmdb.org/t/p/w342" + this.props.poster}
+          alt=""
+        />
+        <h4 className="title"> {this.props.title} </h4>
+        <p className="more" onClick={() => this.handleShow()}>
+          {this.state.mensaje}
+        </p>
+        <h4 className={"show"}> {this.props.descripcionCortada}</h4>
         {/* <button onClick={() => this.props.removerPersonaje(this.props.name)}>
           {" "}
           Eliminar personaje

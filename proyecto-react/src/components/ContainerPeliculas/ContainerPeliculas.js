@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import FilterField from "../FilterField/FilterField";
 import Movie from "../Movie/Movie";
 import "./styles.css";
 
@@ -7,6 +8,8 @@ export default class ContainerPeliculas extends Component {
     super(props);
     this.state = {
       movies: [],
+      filteredMovies: [],
+      page: 2,
     };
   }
 
@@ -21,22 +24,66 @@ export default class ContainerPeliculas extends Component {
         console.log(data);
         this.setState({
           movies: data.results,
+          filteredMovies: data.results,
         });
       })
       .catch((error) => console.log(error));
   }
 
+  addCards() {
+    fetch(
+      "https://api.themoviedb.org/3/movie/popular?api_key=40ec58a7d82c64e794c15c9579790084&page=" +
+        this.state.page
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        let initialArray = this.state.movies;
+        let nextArray = initialArray.concat(data.results);
+        let nextPage = this.state.page + 1;
+
+        this.setState({
+          movies: nextArray,
+          filteredMovies: nextArray,
+          page: nextPage,
+        });
+      });
+  }
+
+  filtrarPorNombre(nombreAFiltrar) {
+    console.log(nombreAFiltrar);
+    const filteredArray = this.state.movies.filter((movie) =>
+      movie.title.toLowerCase().includes(nombreAFiltrar.toLowerCase())
+    );
+    if (nombreAFiltrar === "") {
+      this.setState({
+        filteredMovies: this.state.movies,
+      });
+    } else {
+      this.setState({
+        filteredMovies: filteredArray,
+      });
+    }
+  }
+
   render() {
     console.log("Me estoy renderizando!");
-    console.log(this.state.movies);
+    console.log(this.state.filteredMovies);
 
     return (
       <div className="container">
-        {this.state.movies.map((movie, index) => {
+        <FilterField
+          filtrarPorNombre={(nombreAFiltrar) =>
+            this.filtrarPorNombre(nombreAFiltrar)
+          }
+        />
+        <button onClick={() => this.addCards()}>Página siguiente</button>
+        {this.state.filteredMovies.map((movie, index) => {
           return (
             <Movie
               key={index}
-              poster_path={movie.poster_path}
+              poster={movie.poster_path}
               title={movie.title}
               overview={movie.overview}
             />
