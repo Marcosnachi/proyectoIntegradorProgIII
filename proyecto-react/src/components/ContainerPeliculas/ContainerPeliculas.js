@@ -11,6 +11,7 @@ export default class ContainerPeliculas extends Component {
       movies: [],
       filteredMovies: [],
       page: 2,
+      orientation: 'row'
     };
   }
 
@@ -81,18 +82,31 @@ export default class ContainerPeliculas extends Component {
     }
   }
 
+  changeOrientation(){
+if (this.state.orientation === 'row') {
+  this.setState({
+    orientation: 'column'
+  })
+} else{
+    this.setState({
+      orientation: 'row'
+    })
+  }
+  }
   render() {
     console.log("Me estoy renderizando!");
     console.log(this.state.filteredMovies);
 
     return (
-      <div className="container">
+      <div className={`container-${this.state.orientation}`}>
         <FilterField
           filtrarPorNombre={(nombreAFiltrar) =>
             this.filtrarPorNombre(nombreAFiltrar)
           }
         />
-        <button onClick={() => this.addCards()}>Cargar más películas</button>
+        <button className='boton' onClick={() => this.addCards()}>Cargar más películas</button>
+        <button className='boton' onClick={() => this.changeOrientation()}>Cambiar orientacion</button>
+
         {this.state.filteredMovies.length === 0 ? (
           <div className="loader"> <h1 className= 'notFound'> No se encontraron peliculas para su busqueda</h1></div>
         ) : (
@@ -103,6 +117,7 @@ export default class ContainerPeliculas extends Component {
                 poster={movie.poster_path}
                 title={movie.title}
                 overview={movie.overview}
+                orientation={this.state.orientation}
                 removerPersonaje={(title) => this.removeCard(title)}
               />
             );

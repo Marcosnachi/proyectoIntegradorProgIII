@@ -1,4 +1,4 @@
-.movie {
+.movie-row {
   padding: 10px;
     margin-bottom: 20px;
     width: 24%;
@@ -9,6 +9,23 @@
     border-color: rgba(255, 166, 0, 0.671);
     margin: 5px;
     text-align: center;
+}
+
+.movie-column {
+  padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
+    border-style: solid;
+    border-color: rgba(255, 166, 0, 0.671);
+    margin: 5px;
+    text-align: center;
+}
+
+.movie-column img{
+  width: 33%;
 }
 
 .titulo{
@@ -29,9 +46,21 @@
   display: block;
 }
 
+.this.state.clase{
+  size: 50px;
+}
+
+.title{
+  font-size: 22px;
+}
+
+p.show{
+  font-size: 15.5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
 .more{
   
-    font-size: 15px;
+    font-size: 18.5px;
     color: rgba(255, 166, 0, 0.671);
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;

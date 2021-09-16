@@ -7,7 +7,7 @@ export default class Movie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clase: "hide",
+      clase: "hide", 
       mensaje: "ver más",
     };
   }
@@ -28,8 +28,8 @@ export default class Movie extends Component {
 
   render() {
     return (
-      <div className="movie">
-        <img
+      <div className={`movie-${this.props.orientation}`}>
+        <img className='img'
           src={"https://image.tmdb.org/t/p/w342" + this.props.poster}
           alt=""
         />
@@ -37,7 +37,7 @@ export default class Movie extends Component {
         <p className="more" onClick={() => this.handleShow()}>
           {this.state.mensaje}
         </p>
-        <p className={this.state.clase}>{this.props.overview}</p>
+        <p className='text' className={this.state.clase}>{this.props.overview}</p>
         <p onClick={() => this.props.removerPersonaje(this.props.title)}>
           {" "}
          
