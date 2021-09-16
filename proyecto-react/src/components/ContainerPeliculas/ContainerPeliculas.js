@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FilterField from "../FilterField/FilterField";
 import Movie from "../Movie/Movie";
 import "./styles.css";
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 export default class ContainerPeliculas extends Component {
   constructor(props) {
@@ -25,6 +26,7 @@ export default class ContainerPeliculas extends Component {
         this.setState({
           movies: data.results,
           filteredMovies: data.results,
+          return: '',
         });
       })
       .catch((error) => console.log(error));
@@ -70,6 +72,7 @@ export default class ContainerPeliculas extends Component {
     if (nombreAFiltrar === "") {
       this.setState({
         filteredMovies: this.state.movies,
+
       });
     } else {
       this.setState({
@@ -91,7 +94,7 @@ export default class ContainerPeliculas extends Component {
         />
         <button onClick={() => this.addCards()}>Cargar más películas</button>
         {this.state.filteredMovies.length === 0 ? (
-          <h4> Cargando ... </h4>
+          <div className="loader"> <h1 className= 'notFound'> No se encontraron peliculas para su busqueda</h1></div>
         ) : (
           this.state.filteredMovies.map((movie, index) => {
             return (

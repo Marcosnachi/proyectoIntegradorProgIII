@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./styles.css";
+<meta charset="UTF-8"></meta>
 
 //Componente de presentación (sin lógica)
 export default class Movie extends Component {
@@ -37,10 +38,12 @@ export default class Movie extends Component {
           {this.state.mensaje}
         </p>
         <p className={this.state.clase}>{this.props.overview}</p>
-        <button onClick={() => this.props.removerPersonaje(this.props.title)}>
+        <p onClick={() => this.props.removerPersonaje(this.props.title)}>
           {" "}
-          Eliminar personaje
-        </button>
+         
+          <p className= 'x'>&#10060;</p>
+
+        </p>
       </div>
     );
   }
