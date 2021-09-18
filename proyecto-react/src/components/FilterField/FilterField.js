@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './styles.css'
 
 export default class FilterField extends Component {
   constructor() {
@@ -24,9 +25,9 @@ export default class FilterField extends Component {
 
   render() {
     return (
-      <form onSubmit={(event) => this.prevenirSubmit(event)}>
+      <form className='filtro' onSubmit={(event) => this.prevenirSubmit(event)}>
         <label>Search: </label>
-        <input onChange={(event) => this.capturaInput(event)} type="text" />
+        <input className='filtro' onChange={(event) => this.capturaInput(event)} type="text" />
       </form>
     );
   }

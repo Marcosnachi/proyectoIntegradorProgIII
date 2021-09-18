@@ -1,5 +1,5 @@
 .movie-row {
-  padding: 10px;
+  /* padding: 10px; Aca fijate si queres sacarselo o no */
   margin-bottom: 20px;
   width: 24%;
   background: #fff;
@@ -7,12 +7,16 @@
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
   border-style: solid;
   border-color: rgba(255, 166, 0, 0.671);
-  margin: 5px;
+  margin: 8px;
   text-align: center;
 }
 
+.movie-row img{
+  width: 100%;
+}
+
 .movie-column {
-  padding: 10px;
+  /* padding: 10px; Aca tmb fijate si queres sacarselo o no */
   margin-bottom: 20px;
   width: 100%;
   background: #fff;
@@ -20,7 +24,7 @@
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
   border-style: solid;
   border-color: rgba(255, 166, 0, 0.671);
-  margin: 5px;
+  margin: 8px;
   text-align: center;
 }
 
