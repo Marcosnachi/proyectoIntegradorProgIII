@@ -60,14 +60,15 @@ export default class ContainerPeliculas extends Component {
               page: nextPage,
               loading: true,
             });
-          });
+          })
+          .catch((error) => console.log(error));
       }
     );
   }
 
   removeCard(title) {
     const filteredMovies = this.state.movies.filter(
-      (element) => element.title !== title
+      (movie) => movie.title !== title
     );
 
     this.setState({
@@ -75,6 +76,8 @@ export default class ContainerPeliculas extends Component {
       filteredMovies: filteredMovies,
     });
   }
+
+  changeOrder(title) {}
 
   loaderShow() {
     if (!this.state.loading) {
@@ -97,6 +100,7 @@ export default class ContainerPeliculas extends Component {
             vote_average={movie.vote_average}
             release_date={movie.release_date}
             orientation={this.state.orientation}
+            changeOrder={(title) => this.changeOrder(title)}
             removerPersonaje={(title) => this.removeCard(title)}
           />
         );
