@@ -5,71 +5,103 @@
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-  border-style: solid;
-  border-color: rgba(255, 166, 0, 0.671);
+  border: 5px solid;
+  border-color: #6ac045;
   margin: 8px;
+  background-color: #82bb8e;
   text-align: center;
 }
 
-.movie-row img{
+.movie-row img {
   width: 100%;
+  border-bottom: solid 2px #6ac045;
 }
 
 .movie-column {
   /* padding: 10px; Aca tmb fijate si queres sacarselo o no */
+  display: flex;
+  flex-direction: row;
   margin-bottom: 20px;
   width: 100%;
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-  border-style: solid;
-  border-color: rgba(255, 166, 0, 0.671);
+  border: 5px solid;
+  border-color: #6ac045;
   margin: 8px;
   text-align: center;
+  background-color: #82bb8e;
+  display: flex;
+  position: relative;
+}
+
+.movie-column .movie_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.text p {
+  padding: 10px;
 }
 
 .movie-column img {
-  width: 33%;
+  position: relative;
+  width: 20%;
 }
 
-.titulo {
-  font-size: 17px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-.descripcion {
-  font-family: "Netflix Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: rgba(53, 46, 46, 0.726);
+.movie-column .text {
+  padding: 15px;
 }
 
 .hide {
   display: none;
 }
+
 .show {
   display: block;
 }
 
-.this.state.clase {
-  size: 50px;
-}
-
 .title {
-  font-size: 22px;
+  margin: 15px;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  color: white;
 }
 
-p.show {
+div.show {
   font-size: 15.5px;
+  margin: 10px;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .more {
   font-size: 18.5px;
-  color: rgba(255, 166, 0, 0.671);
+  color: #368017;
+  font-weight: bolder;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: bold;
+  font-size: 16px;
+  display: inline;
 }
 
 .pointer {
   cursor: pointer;
+}
+
+.movie-column .x {
+  display: inline;
+  position: absolute;
+  top: 10px;
+  color: red;
+  right: 15px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.movie-row .x {
+  font-size: 30px;
+  margin-top: 20px;
+  padding-bottom: 10px;
+  color: red;
 }

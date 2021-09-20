@@ -15,55 +15,49 @@
   align-items: flex-start;
   padding: 1rem;
   margin: 1rem;
+  margin-left: 90px;
+  margin-right: 120px;
 }
 
+.achetres {
+  font-size: 20px;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  color: white;
+}
 
-.x{
+.x {
   font-size: 23px;
 }
 
-.loader {
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 99%;
-  height: 99%;
-  z-index: 9999;
-  background: url('pageLoader.gif') 50% 50% no-repeat rgb(249,249,249);
-  opacity: .8;
-}
-
-.notFound{
-  color: rgb(110, 206, 238);
+.notFound {
+  color: rgb(250, 100, 0);
   text-align: center;
-  margin-top: 255px;
-  margin-left: 395px;
 }
-
-
-
 
 /* CSS */
 .boton {
   align-items: center;
   background-clip: padding-box;
-  background-color: #fa6400;
+  background-color: #6ac045;
   border: 1px solid transparent;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
   display: inline-flex;
-  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
   font-size: 16px;
   font-weight: 600;
   justify-content: center;
   line-height: 1.25;
-  margin: 10px;
+  margin-left: 115px;
+  margin-top: 20px;
+  margin-right: -80px;
   min-height: 3rem;
-  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
-  position: relative;
+  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
   text-decoration: none;
   transition: all 250ms;
   user-select: none;
@@ -75,7 +69,7 @@
 
 .boton:hover,
 .boton:focus {
-  background-color: #fb8332;
+  background-color: #55be28;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
@@ -84,10 +78,43 @@
 }
 
 .boton:active {
-  background-color: #c85000;
-  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  background-color: #53da5ae1;
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   transform: translateY(0);
 }
 
-
-
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #6ac045;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #6ac045 transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

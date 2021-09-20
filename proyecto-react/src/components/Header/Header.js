@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./styles.css";
-import FilterField from "../FilterField/FilterField";
+import logo from "../Header/logo3.png";
 
 export default class Header extends Component {
   constructor(props) {
@@ -10,7 +10,11 @@ export default class Header extends Component {
   render() {
     return (
       <React.Fragment>
-        <header class="main-header"></header>
+        <header className="main-header">
+          <a href="/">
+            <img className="logo" src={logo} alt="" />
+          </a>
+        </header>
       </React.Fragment>
     );
   }

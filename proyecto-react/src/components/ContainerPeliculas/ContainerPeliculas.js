@@ -12,6 +12,8 @@ export default class ContainerPeliculas extends Component {
       filteredMovies: [],
       page: 2,
       orientation: "row",
+      loading: false,
+      textMovie: "",
     };
   }
 
@@ -28,30 +30,39 @@ export default class ContainerPeliculas extends Component {
           movies: data.results,
           filteredMovies: data.results,
           return: "",
+          loading: true,
         });
       })
       .catch((error) => console.log(error));
   }
 
   addCards() {
-    fetch(
-      "https://api.themoviedb.org/3/movie/popular?api_key=40ec58a7d82c64e794c15c9579790084&page=" +
-        this.state.page
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        let initialArray = this.state.movies;
-        let nextArray = initialArray.concat(data.results);
-        let nextPage = this.state.page + 1;
+    this.setState(
+      {
+        loading: false,
+      },
+      () => {
+        fetch(
+          "https://api.themoviedb.org/3/movie/popular?api_key=40ec58a7d82c64e794c15c9579790084&page=" +
+            this.state.page
+        )
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            let initialArray = this.state.movies;
+            let nextArray = initialArray.concat(data.results);
+            let nextPage = this.state.page + 1;
 
-        this.setState({
-          movies: nextArray,
-          filteredMovies: nextArray,
-          page: nextPage,
-        });
-      });
+            this.setState({
+              movies: nextArray,
+              filteredMovies: nextArray,
+              page: nextPage,
+              loading: true,
+            });
+          });
+      }
+    );
   }
 
   removeCard(title) {
@@ -65,18 +76,48 @@ export default class ContainerPeliculas extends Component {
     });
   }
 
+  loaderShow() {
+    if (!this.state.loading) {
+      return (
+        <div className="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      );
+    } else {
+      return this.state.filteredMovies.map((movie, index) => {
+        return (
+          <Movie
+            key={index}
+            poster={movie.poster_path}
+            title={movie.title}
+            overview={movie.overview}
+            vote_average={movie.vote_average}
+            release_date={movie.release_date}
+            orientation={this.state.orientation}
+            removerPersonaje={(title) => this.removeCard(title)}
+          />
+        );
+      });
+    }
+  }
+
   filtrarPorNombre(nombreAFiltrar) {
     console.log(nombreAFiltrar);
     const filteredArray = this.state.movies.filter((movie) =>
       movie.title.toLowerCase().includes(nombreAFiltrar.toLowerCase())
     );
-    if (nombreAFiltrar === "") {
+    if (filteredArray.length <= 0) {
       this.setState({
-        filteredMovies: this.state.movies,
+        filteredMovies: [],
+        textMovie: "No hay títulos que coincidan con su búsqueda",
       });
     } else {
       this.setState({
         filteredMovies: filteredArray,
+        textMovie: "",
       });
     }
   }
@@ -107,31 +148,11 @@ export default class ContainerPeliculas extends Component {
           Cargar más películas
         </button>
         <button className="boton" onClick={() => this.changeOrientation()}>
-          Cambiar orientacion
+          Cambiar orientación
         </button>
         <div className={`container-${this.state.orientation}`}>
-          {this.state.filteredMovies.length === 0 ? (
-            <div className="loader">
-              {" "}
-              <h1 className="notFound">
-                {" "}
-                No se encontraron peliculas para su busqueda
-              </h1>
-            </div>
-          ) : (
-            this.state.filteredMovies.map((movie, index) => {
-              return (
-                <Movie
-                  key={index}
-                  poster={movie.poster_path}
-                  title={movie.title}
-                  overview={movie.overview}
-                  orientation={this.state.orientation}
-                  removerPersonaje={(title) => this.removeCard(title)}
-                />
-              );
-            })
-          )}
+          {this.loaderShow()}
+          <h3 className="achetres">{this.state.textMovie}</h3>
         </div>
       </>
     );
