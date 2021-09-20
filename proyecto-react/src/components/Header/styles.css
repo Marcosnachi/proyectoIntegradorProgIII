@@ -1,3 +1,7 @@
+.header_container {
+  position: absolute;
+}
+
 .main-header {
   margin-right: auto;
   margin-left: auto;
@@ -11,9 +15,10 @@
 }
 
 .logo {
-  width: 15%;
+  position: relative;
+  width: 13%;
   top: 0px;
-  margin-top: -6px;
-  margin-left: 100px;
+  margin-top: -7px;
+  margin-left: 130px;
   cursor: pointer;
 }

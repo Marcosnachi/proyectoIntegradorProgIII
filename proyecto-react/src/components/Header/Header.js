@@ -10,11 +10,13 @@ export default class Header extends Component {
   render() {
     return (
       <React.Fragment>
-        <header className="main-header">
-          <a href="/">
-            <img className="logo" src={logo} alt="" />
-          </a>
-        </header>
+        <div className="header_container">
+          <header className="main-header">
+            <a href="/">
+              <img className="logo" src={logo} alt="" />
+            </a>
+          </header>
+        </div>
       </React.Fragment>
     );
   }
